@@ -14,11 +14,11 @@ hero:
       text: 教育经历
       link: /learning-experience
   image:
-    src: ./images/logo.jpg
+    src: /images/logo.jpg
     alt: VitePress
 features:
   - title: QQ
-    details: 2689607189
+    details: "2689607189"
     link: https://qm.qq.com/q/xFHlEZHIaI
   - title: Email
     details: coderwujx@163.com

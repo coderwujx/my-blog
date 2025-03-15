@@ -6,7 +6,7 @@ export default defineConfig({
   description: "一个使用VitePress构建的个人博客",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
-    logo: '../images/logo.jpg',
+    logo: '/images/logo.jpg',
     nav: [
       { text: '首页', link: '/' },
       { text: '个人描述', link: '/personal-description' }

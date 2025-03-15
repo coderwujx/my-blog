@@ -11,7 +11,7 @@ outline: deep # 当前页面显示深层目录
 
 [2689607189](https://qm.qq.com/q/xFHlEZHIaI)
 
-[![qq图片](./images/qq.png "QQ")](https://qm.qq.com/q/xFHlEZHIaI)
+[![qq图片](./public/images/qq.png)](https://qm.qq.com/q/xFHlEZHIaI)
 
 ## Email
 
@@ -21,4 +21,4 @@ outline: deep # 当前页面显示深层目录
 
 [coderwujx前端学习](https://mp.weixin.qq.com/s/vDjDDazCs2cvxeAwmwHJrA)
 
-[![微信公众号](./images/Weixin.png "QQ")](https://mp.weixin.qq.com/s/vDjDDazCs2cvxeAwmwHJrA)
+[![微信公众号](./public/images/Weixin.png)](https://mp.weixin.qq.com/s/vDjDDazCs2cvxeAwmwHJrA)
