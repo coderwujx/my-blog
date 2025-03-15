@@ -4,6 +4,9 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: "个人博客",
   description: "一个使用VitePress构建的个人博客",
+  head: [
+    ['link', { rel: 'icon', href: '/images/logo.jpg' }]
+  ],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     logo: '/images/logo.jpg',
@@ -21,7 +24,6 @@ export default defineConfig({
         ]
       }
     ],
-
     socialLinks: [
       { icon: 'github', link: 'https://github.com/coderwujx/Blong' }
     ]
