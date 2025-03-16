@@ -1,6 +1,5 @@
 import { defineConfig } from 'vitepress'
 
-// https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "个人博客",
   description: "一个使用VitePress构建的个人博客",
@@ -8,13 +7,12 @@ export default defineConfig({
     ['link', { rel: 'icon', href: '/images/logo.jpg' }]
   ],
   themeConfig: {
-    // https://vitepress.dev/reference/default-theme-config
     logo: '/images/logo.jpg',
     nav: [
       { text: '首页', link: '/' },
       { text: '个人描述', link: '/personal-description' }
     ],
-    outlineTitle: '本页目录', // 中文环境
+    outlineTitle: '本页目录',
     sidebar: [
       {
         text: '个人描述',

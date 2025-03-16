@@ -14,17 +14,23 @@ hero:
       text: 教育经历
       link: /learning-experience
   image:
-    src: /images/logo.jpg
+    src: /public/images/logo.jpg
     alt: VitePress
 features:
   - title: QQ
+    icon:
+      src: /public/images/QQlogo.webp
     details: "2689607189"
     link: https://qm.qq.com/q/xFHlEZHIaI
   - title: Email
+    icon:
+      src: /public/images/maillogo.webp
     details: coderwujx@163.com
     link: https://email.163.com/
   - title: 微信公众号
-    details: 贤某人爱学习
+    icon:
+      src: /public/images/weixinlogo.webp
+    details: coderwujx前端学习
     link: https://mp.weixin.qq.com/s/vDjDDazCs2cvxeAwmwHJrA
 ---
 
