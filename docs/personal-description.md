@@ -19,4 +19,4 @@ outline: deep # 当前页面显示深层目录
 
 [coderwujx前端学习](https://mp.weixin.qq.com/s/vDjDDazCs2cvxeAwmwHJrA)
 
-[![微信公众号](./public/images/Weixin.webp)](https://mp.weixin.qq.com/s/vDjDDazCs2cvxeAwmwHJrA)
+[![微信公众号](/images/Weixin.webp)](https://mp.weixin.qq.com/s/vDjDDazCs2cvxeAwmwHJrA)
