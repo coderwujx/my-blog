@@ -8,6 +8,10 @@ export default defineConfig({
   ],
   themeConfig: {
     logo: '/images/logo.jpg',
+    docFooter: {
+      prev: '上一篇',
+      next: '下一篇'
+    },
     nav: [
       { text: '首页', link: '/' },
       { text: '个人描述', link: '/personal-description' }
@@ -20,7 +24,7 @@ export default defineConfig({
         items: [
           { text: '学习经历', link: '/learning-experience' },
           { text: '联系作者', link: '/personal-description' }
-        ]
+        ],
       }
     ],
     socialLinks: [
