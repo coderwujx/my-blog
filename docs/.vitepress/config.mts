@@ -13,6 +13,7 @@ export default defineConfig({
       { text: '个人描述', link: '/personal-description' }
     ],
     outlineTitle: '本页目录',
+    sidebarMenuLabel: '目录',
     sidebar: [
       {
         text: '个人描述',
