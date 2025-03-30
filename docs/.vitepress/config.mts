@@ -25,7 +25,6 @@ export default defineConfig({
           { text: '数据结构实现', link: '/data-structures' },
           { text: '学习经历', link: '/learning-experience' },
           { text: '联系作者', link: '/personal-description' },
-          { text: '无聊的奖项', link: '/bored-awards' }
         ],
       }
     ],
