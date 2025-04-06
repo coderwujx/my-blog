@@ -174,24 +174,27 @@ class SqList<T> {
 
 ### 单向链表
 
-该单向链表实现
-1.LinkedListNode链表节点
-2.LinkedList链表
-实现方法
-1.length属性:链表的长度
-2.isEmpty属性:链表是否为空
-3.traverse():遍历链表
-4.append():向链表尾部追加元素
-5.prepend():向链表头部追加元素
-6.insert():向链表指定位置(索引)插入元素
-7.getItem():根据索引获取元素
-8.indexOf():根据元素查找索引位置
-9.remove():根据索引删除元素
-10.removeHead():删除头节点
-11.removeTail():删除尾节点
-12.removeByValue():删除第一个匹配到的元素
-13.contains():判断链表是否包含某个元素
-14.destroy():清空链表
+#### 该单向链表实现  
+
+1.LinkedListNode链表节点  
+2.LinkedList链表  
+
+#### 实现方法  
+
+1.length属性:链表的长度  
+2.isEmpty属性:链表是否为空  
+3.traverse():遍历链表  
+4.append():向链表尾部追加元素  
+5.prepend():向链表头部追加元素  
+6.insert():向链表指定位置(索引)插入元素  
+7.getItem():根据索引获取元素  
+8.indexOf():根据元素查找索引位置  
+9.remove():根据索引删除元素  
+10.removeHead():删除头节点  
+11.removeTail():删除尾节点  
+12.removeByValue():删除第一个匹配到的元素  
+13.contains():判断链表是否包含某个元素  
+14.destroy():清空链表  
 
 ```ts
 /**
@@ -209,7 +212,7 @@ class LinkedListNode<T> {
  * @description 单向链表
  * @author coderwujx
  */
-export class LinkedList<T> {
+class LinkedList<T> {
   private head: LinkedListNode<T> | null = null; // 头节点
   private _length: number = 0; // 链表长度
   /**
