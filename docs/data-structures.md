@@ -13,7 +13,7 @@ outline: deep
  * @template T 数组元素类型
  * @author coderwujx
  */
-export class SqList<T> {
+class SqList<T> {
   private arr: T[]; //数组
 
   constructor(...items: T[]) {
@@ -172,239 +172,271 @@ export class SqList<T> {
 
 ## 链表
 
+### 单向链表
+
+该单向链表实现
+1.LinkedListNode链表节点
+2.LinkedList链表
+实现方法
+1.length属性:链表的长度
+2.isEmpty属性:链表是否为空
+3.traverse():遍历链表
+4.append():向链表尾部追加元素
+5.prepend():向链表头部追加元素
+6.insert():向链表指定位置(索引)插入元素
+7.getItem():根据索引获取元素
+8.indexOf():根据元素查找索引位置
+9.remove():根据索引删除元素
+10.removeHead():删除头节点
+11.removeTail():删除尾节点
+12.removeByValue():删除第一个匹配到的元素
+13.contains():判断链表是否包含某个元素
+14.destroy():清空链表
+
 ```ts
 /**
- * 链表节点
- * @template T 节点数据类型
- * @description 链表的基本构建单元，包含数据和指向下一节点的指针
+ * @description 单向链表节点
  * @author coderwujx
  */
-class ListNode<T> {
-  value: T; //节点数据
-  next: ListNode<T> | null; //下一个节点
-
-  constructor(value: T) {
-    this.value = value;
-    this.next = null;
+class LinkedListNode<T> {
+  public element: T; // 节点元素
+  public next: LinkedListNode<T> | null = null; // 指向下一个节点的指针
+  constructor(element: T) {
+    this.element = element; // 初始化节点元素
   }
 }
-
 /**
- * 链表
- * @description 单向链表实现，提供基本的链表操作
- * @template T 链表元素类型
+ * @description 单向链表
  * @author coderwujx
  */
-class LinkedList<T> {
-  private head: ListNode<T> | null; // 链表头节点指针
-  private _length: number; // 链表中节点的数量
-
+export class LinkedList<T> {
+  private head: LinkedListNode<T> | null = null; // 头节点
+  private _length: number = 0; // 链表长度
   /**
-   * 初始化空链表
-   * @description 创建一个空链表，头节点为null，长度为0
+   * @description 初始化链表
+   * @param elements 链表元素
+   * @author coderwujx
    */
-  constructor() {
-    this.head = null;
-    this._length = 0;
+  constructor(elements?: T[] | T) {
+    // 修改判断条件：检查 elements 是否存在
+    if (elements) {
+      if (Array.isArray(elements)) {
+        // 如果传入的是数组，则将数组中的元素依次添加到链表中
+        elements.forEach((element) => this.append(element));
+      } else {
+        // 如果传入的是单个元素，则直接将该元素添加到链表中
+        this.append(elements as T);
+      }
+    }
   }
-
   /**
-   * 链表长度
-   * @returns {number} 链表中节点的数量
-   * @description 获取链表中节点的数量
+   * @description 获取链表长度
+   * @author coderwujx
+   * @returns {number} 链表长度
    */
   get length(): number {
-    return this._length;
+    return this._length; // 返回链表长度
   }
-
   /**
-   * @description 在链表尾部添加元素
-   * @param value 要添加的值
+   * @description 判断链表是否为空
    */
-  append(value: T): void {
-    const newNode = new ListNode(value); // 创建新节点
-
-    if (!this.head) {
-      this.head = newNode; // 如果链表为空，则新节点为头节点
-    } else {
-      let current = this.head; // 从头部开始遍历
-      while (current.next) {
-        current = current.next; // 移动到下一个节点
-      }
-      current.next = newNode; // 将最后一个节点的next指向新节点
-    }
-    this._length++; // 链表长度加1
-  }
-
-  /**
-   * @description 在链表头部添加元素
-   * @param value 要添加的值
-   */
-  prepend(value: T): void {
-    const newNode = new ListNode(value);
-    newNode.next = this.head;
-    this.head = newNode;
-    this._length++;
-  }
-
-  /**
-   *  @description 在指定位置插入元素
-   * @param value 要插入的值
-   * @param position 插入位置
-   * @returns {boolean} 是否插入成功
-   */
-  insert(value: T, position: number): boolean {
-    if (position < 0 || position > this._length) return false; // 检查位置是否有效
-
-    if (position === 0) {
-      this.prepend(value); // 在头部插入
-      return true;
-    }
-
-    if (position === this._length) {
-      this.append(value); // 在尾部插入
-      return true;
-    }
-
-    const newNode = new ListNode(value);
-    let current = this.head;
-    let previous: ListNode<T> | null = null; // 用于记录前一个节点
-    let index = 0;
-
-    while (index++ < position) {
-      previous = current;
-      current = current!.next; // 移动到指定位置
-    }
-
-    newNode.next = current;
-    previous!.next = newNode; // 将前一个节点的next指向新节点
-    this._length++;
-    return true;
-  }
-
-  /**
-   * @description 删除指定位置的元素
-   * @param position 删除位置
-   * @returns {T | null} 删除的元素值，如果位置无效则返回null
-   */
-  removeAt(position: number): T | null {
-    if (position < 0 || position >= this._length) return null; // 检查位置是否有效
-
-    let current = this.head; // 从头节点开始遍历
-    if (position === 0) {
-      this.head = current!.next;
-    } else {
-      let previous: ListNode<T> | null = null; // 用于记录前一个节点
-      let index = 0; // 记录当前位置
-
-      while (index++ < position) {
-        previous = current; // 移动到指定位置
-        current = current!.next; // 移动到指定位置
-      }
-      previous!.next = current!.next; // 将前一个节点的next指向当前节点的next
-    }
-
-    this._length--; // 链表长度减1
-    return current!.value; // 返回删除的元素值
-  }
-
-  /**
-   * @description 删除指定元素
-   * @param value 要删除的值
-   * @returns {boolean} 是否删除成功
-   */
-  remove(value: T): boolean {
-    const index = this.indexOf(value); // 获取元素索引
-    if (index === -1) return false; // 如果索引为-1，则元素不存在
-    this.removeAt(index); // 删除元素
-    return true;
-  }
-
-  /**
-   * @description 查找元素位置
-   * @param value 要查找的值
-   * @returns {number} 元素索引，不存在返回-1
-   */
-  indexOf(value: T): number {
-    let current = this.head; // 从头节点开始遍历
-    let index = 0;
-
-    while (current) {
-      if (current.value === value) {
-        // 如果找到匹配的值
-        return index;
-      }
-      current = current.next; // 移动到下一个节点
-      index++;
-    }
-
-    return -1;
-  }
-
-  /**
-   * @description 判断是否包含元素
-   * @param value 要查找的值
-   * @returns {boolean} 是否包含该元素
-   */
-  contains(value: T): boolean {
-    return this.indexOf(value) !== -1; // 调用indexOf方法判断是否存在
-  }
-
-  /**
-   * @description 获取指定位置的元素
-   * @param position 位置索引
-   * @returns {T | null} 元素值，如果位置无效则返回null
-   */
-  get(position: number): T | null {
-    if (position < 0 || position >= this._length) return null; // 检查位置是否有效
-
-    let current = this.head; // 从头节点开始遍历
-    let index = 0;
-
-    while (index++ < position) {
-      current = current!.next; // 移动到指定位置
-    }
-
-    return current!.value;
-  }
-
-  /**
-   * @description 清空链表
-   */
-  clear(): void {
-    this.head = null; // 将头节点置为null
-    this._length = 0; // 将链表长度置为0
-  }
-
-  /**
-   * @description 转换为数组
-   * @returns {T[]} 包含链表所有元素的数组
-   */
-  toArray(): T[] {
-    const result: T[] = []; // 用于存储链表元素的数组
-    let current = this.head; // 从头节点开始遍历
-
-    while (current) {
-      result.push(current.value); // 将当前节点的值添加到结果数组中
-      current = current.next; // 移动到下一个节点
-    }
-
-    return result;
+  get isEmpty(): boolean {
+    return this._length === 0;
   }
 
   /**
    * @description 遍历链表
-   * @param callback 回调函数，接收节点值和索引作为参数
+   * @author coderwujx
    */
-  traverse(callback: (value: T, index: number) => void): void {
-    let current = this.head; // 从头节点开始遍历
-    let index = 0;
-
-    while (current) {
-      callback(current.value, index++); // 调用回调函数处理当前节点的值和索引
-      current = current.next; // 移动到下一个节点
+  public traverse(): void {
+    let current = this.head; // 从链表头部开始遍历
+    while (current !== null) {
+      console.log(current.element); // 输出当前节点的元素
+      current = current.next; // 将当前节点指向下一个节点
     }
   }
+
+  /**
+   * @description 向链表尾部添加一个新的项
+   * @param element 元素
+   * @author coderwujx
+   * @returns {boolean} 是否添加成功
+   */
+  public append(element: T): void {
+    const newNode = new LinkedListNode(element); // 创建新节点
+    if (this.head === null) {
+      // 如果链表为空，则将头节点指向新节点
+      this.head = newNode;
+    } else {
+      // 否则，遍历链表，找到最后一个节点，将其 next 指向新节点
+      let current = this.head;
+      while (current.next !== null) {
+        current = current.next;
+      }
+      current.next = newNode;
+    }
+    this._length++; // 更新链表长度
+  }
+
+  /**
+   * @description 向链表头部插入节点
+   * @param element 元素
+   * @author coderwujx
+   */
+  public preappend(element: T): void {
+    const newNode = new LinkedListNode(element); // 创建新节点
+    newNode.next = this.head; // 将新节点的 next 指向头节点
+    this.head = newNode; // 将头节点指向新节点
+    this._length++; // 更新链表长度
+  }
+
+  /**
+   * @description 向链表指定位置插入节点
+   * @param position 索引
+   * @param element 元素
+   * @author coderwujx
+   */
+  public insert(position: number, element: T): boolean {
+    if (position < 0 || position > this._length) {
+      throw new Error(`位置不合法! 索引应在0-${this._length}范围内`); //位置不合法
+    }
+
+    if (position === 0) return this.preappend(element), true; // 头部插入
+    if (position === this._length) return this.append(element), true; // 尾部插入
+
+    const newNode = new LinkedListNode(element); // 创建新节点
+    let current = this.head; // 从链表头部开始遍历
+    let previous: LinkedListNode<T> | null = null; // 记录当前节点的前一个节点
+    let index = 0;
+
+    while (index++ < position && current) {
+      previous = current;
+      current = current.next;
+    }
+
+    newNode.next = current;
+    previous!.next = newNode;
+    this._length++;
+    return true;
+  }
+  /**
+   * @description 获取指定位置的元素
+   * @param position 索引
+   * @author coderwujx
+   * @returns {T | null} 元素
+   */
+  public getItem(position: number): T | null {
+    if (position < 0 || position >= this._length) {
+      //位置不合法
+      console.log("位置不合法!");
+      return null;
+    }
+    let current = this.head; // 从链表头部开始遍历
+    let index = 0;
+    while (index++ < position && current !== null) {
+      current = current.next; // 将当前节点指向下一个节点
+    }
+    return current?.element || null; // 返回当前节点的元素
+  }
+
+  /**
+   * @description 返回元素在链表中的索引。如果链表中没有该元素则返回-1
+   * @param element 元素
+   * @author coderwujx
+   * @returns {number} 索引
+   */
+  public indexOf(element: T): number {
+    let current = this.head; // 从链表头部开始遍历
+    let index = 0; // 记录当前节点的索引
+    while (current !== null) {
+      if (current.element === element) {
+        // 如果当前节点的元素等于目标元素，则返回当前节点的索引
+        return index;
+      }
+      current = current.next; // 将当前节点指向下一个节点
+      index++; // 将索引加1
+    }
+    return -1; // 如果链表中没有该元素，则返回-1
+  }
+
+  /**
+   * @description 按索引删除元素
+   * @param index 元素
+   * @author coderwujx
+   * @returns {T | null} 元素
+   */
+  public remove(index: number): T | null {
+    if (index < 0 || index >= this._length) {
+      //位置不合法
+      console.log("位置不合法!");
+      return null;
+    }
+    let current = this.head; // 从链表头部开始遍历
+    let previous: LinkedListNode<T> | null = null; // 记录当前节点的前一个节点
+    let currentIndex = 0;
+    while (currentIndex++ < index && current !== null) {
+      previous = current; // 将当前节点赋值给 previous
+      current = current.next; // 将当前节点指向下一个节点
+    }
+    if (previous === null) {
+      // 如果要删除的节点是头节点，则将头节点指向下一个节点
+      this.head = current?.next || null;
+    }
+    previous!.next = current?.next || null; // 将 previous 的 next 指向当前节点的下一个节点
+    this._length--;
+    return current?.element || null; // 返回当前节点的元素
+  }
+  /**
+   * @description 删除头节点
+   * @author coderwujx
+   * @returns {T | null} 元素
+   */
+  public removeHead(): T | null {
+    return this.remove(0);
+  }
+  /**
+   * @description 删除尾节点
+   * @author coderwujx
+   * @returns {T | null} 元素
+   */
+  public removeTail(): T | null {
+    return this.remove(this._length - 1);
+  }
+
+  /**
+   * @description 删除第一个匹配值的节点
+   * @param element 元素
+   * @author coderwujx
+   * @returns {T | null} 元素
+   */
+  public removeByValue(element: T): T | null {
+    const index = this.indexOf(element);
+    return this.remove(index);
+  }
+  /**
+   * @description 查找是否存在某个值
+   * @param element 元素
+   * @author coderwujx
+   * @returns {boolean} 是否存在
+   */
+  public contains(element: T): boolean {
+    return this.indexOf(element) !== -1;
+  }
+  /**
+   * @description 清空链表
+   * @author coderwujx
+   */
+  public destroy(): void {
+    this.head = null; // 将头节点置为 null
+    this._length = 0; // 将链表长度置为 0
+  }
 }
+
+
+```
+
+### 双向链表
+
+```ts
 
 ```
