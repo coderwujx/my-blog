@@ -228,7 +228,7 @@ class LinkedList<T> {
         elements.forEach((element) => this.append(element));
       } else {
         // 如果传入的是单个元素，则直接将该元素添加到链表中
-        this.append(elements as T);
+        this.append(elements);
       }
     }
   }
