@@ -11,8 +11,8 @@ hero:
       text: 个人描述
       link: /personal-description
     - theme: alt
-      text: 教育经历
-      link: /learning-experience
+      text: 代码实现
+      link: /data-structures
   image:
     src: /images/logo.jpg
     alt: VitePress
